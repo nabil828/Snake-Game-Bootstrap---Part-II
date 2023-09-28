@@ -13,10 +13,10 @@
 - Classes and Objects @done
     - game, snake, food @done
 
-- Snake walks!
-    - add update() for game and snake
-    - add direction to snake. great the direction enum
-    - slow down the snake by addig FPS
+- Snake walks! @done
+    - add update() for game and snake @done
+    - add direction to snake. great the direction enum @done
+    - slow down the snake by addig FPS @done
 
 - Snake eats!
     - replace x, y for a snake with segmenets. head of snake to the end of the tail
