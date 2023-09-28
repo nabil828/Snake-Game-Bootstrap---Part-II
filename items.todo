@@ -18,21 +18,21 @@
     - add direction to snake. great the direction enum @done
     - slow down the snake by addig FPS @done
 
-- Snake eats!
-    - replace x, y for a snake with segmenets. head of snake to the end of the tail
-    - update the snak draw(): draw all the segnemnts
-    - update the snake update()
-        - shifting the segment to the left
-        - update the head
-        - test so far by creating a snake of size 4
-        - detect collision with food, 
-            - Increase the size of snake by one
-            - change the location of the food
+- Snake eats! @done
+    - replace x, y for a snake with segmenets. head of snake to the end of the tail @done
+    - update the snake draw(): draw all the segnemnts @done
+    - update the snake update() @done
+        - shifting the segment to the left @done
+        - update the head @done
+        - test so far by creating a snake of size 4 @done
+        - detect collision with food, @done
+            - Increase the size of snake by one @done
+            - change the location of the food @done
 
-- Game over
-    - Game quit Vs. rasie an exception 
-    - guard the controls
-    - guard the draw() and update() 
+- Game over if we hit the wall or the snake itself @done
+    - Game quit Vs. rasie an exception @done
+    - guard the controls @done
+    - guard the draw() and update() @done
 
 - Restart
 - Display score
