@@ -63,6 +63,8 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.snake.draw()
         self.food.draw()
+        # update the display
+        pygame.display.flip()
 
     def game_over(self):
         # fill

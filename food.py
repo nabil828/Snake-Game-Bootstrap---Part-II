@@ -7,8 +7,8 @@ class Food:
         self.y = y
         self.screen = screen
 
-    def draw(self, ):
+    def draw(
+        self,
+    ):
         # draw  a rectangle
         pygame.draw.rect(self.screen, (0, 255, 0), (self.x, self.y, 40, 40))
-        # Update the display
-        pygame.display.flip()

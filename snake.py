@@ -29,8 +29,6 @@ class Snake:
                 (0, 0, 0),
                 (segment["x"], segment["y"], self.block_size, self.block_size),
             )
-        # Update the display
-        pygame.display.flip()
 
     def update(self, food):
         """Update the snake position"""
@@ -58,7 +56,7 @@ class Snake:
         # detect collision with the wall
         if self.detect_collision_with_wall():
             raise "Game over - collision with the wall"
-    
+
         # detect collision with itself
         if self.detect_collision_with_itself():
             raise "Game over - collision with itself"
@@ -114,7 +112,7 @@ class Snake:
                 break
         food.x = x
         food.y = y
-    
+
     def detect_collision_with_wall(self):
         """Detect collision with the wall"""
         if self.segments[-1]["x"] < 0 or self.segments[-1]["x"] > 760:
