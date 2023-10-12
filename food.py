@@ -12,3 +12,6 @@ class Food:
     ):
         # draw  a rectangle
         pygame.draw.rect(self.screen, (0, 255, 0), (self.x, self.y, 40, 40))
+
+    def get_position(self):
+        return {"x": self.x, "y": self.y}

@@ -18,10 +18,33 @@ class Snake:
             {"x": x + self.block_size * 3, "y": y},
         ]
         # the head is the last element in the list
+        self.auto_pilot = False
+        self.final_path  = []
+        self.visited = []
+
 
     def draw(
         self,
     ):
+
+        # draw the visited segments
+        for segment in self.visited:
+            pygame.draw.rect(
+                self.screen,
+                (66, 135, 245), # blue
+                (segment["x"], segment["y"], self.block_size, self.block_size),
+            )
+
+        # draw the final path
+        for segment in self.final_path:
+            pygame.draw.rect(
+                self.screen,
+                (252, 186, 3), # yellow
+                (segment["x"], segment["y"], self.block_size, self.block_size),
+                2
+            )
+            
+        # draw the snake segments
         for segment in self.segments:
             # draw  a rectangle
             pygame.draw.rect(
@@ -37,6 +60,63 @@ class Snake:
         for i in range(len(self.segments) - 1):
             self.segments[i]["x"] = self.segments[i + 1]["x"]
             self.segments[i]["y"] = self.segments[i + 1]["y"]
+
+        def find_neighbors(a_segment):
+            neigbors = []
+            if(a_segment["x"] < 760 ):
+                neigbors.append({"x": a_segment["x"] + self.block_size, "y": a_segment["y"]})
+            if(a_segment["x"] > 0 ):
+                neigbors.append({"x": a_segment["x"] - self.block_size, "y": a_segment["y"]})
+            if(a_segment["y"] < 760 ):
+                neigbors.append({"x": a_segment["x"], "y": a_segment["y"] + self.block_size})
+            if(a_segment["y"] > 0 ):
+                neigbors.append({"x": a_segment["x"], "y": a_segment["y"] - self.block_size})
+            return neigbors
+        
+        def find_valid_neighbors(neighbors):
+            valid_neighbors = []
+            for neighbor in neighbors:
+                if neighbor not in self.segments:
+                    valid_neighbors.append(neighbor)
+            return valid_neighbors
+            
+        def find_path():
+            # implement BFS path finding algorithm
+            visited = [] # set
+            queue = [] # queue
+
+            path_to_the_head = [self.segments[-1]]
+            queue.append((self.segments[-1], path_to_the_head))
+
+            while queue:
+                a_segment, path = queue.pop(0)
+                if a_segment == food.get_position():
+                    self.final_path  = path
+                    self.visited = visited
+                    return path 
+    
+                neighbors = find_neighbors(a_segment)
+                valid_neighbors = find_valid_neighbors(neighbors)
+
+                for neighbor in valid_neighbors:
+                    if neighbor not in visited:
+                        visited.append(neighbor)
+                        queue.append((neighbor, path + [neighbor]))
+            return None
+                        
+
+        if self.auto_pilot == True:
+            path = find_path() # path contains all the segments of the food
+            # following the path
+            if (path[1]["x"] > path[0]["x"]):
+                self.direction = Direction.RIGHT
+            elif (path[1]["x"] < path[0]["x"]):
+                self.direction = Direction.LEFT
+            elif (path[1]["y"] > path[0]["y"]):
+                self.direction = Direction.DOWN
+            elif (path[1]["y"] < path[0]["y"]):
+                self.direction = Direction.UP
+
 
         # update the head of the snake
         if self.direction == Direction.RIGHT:

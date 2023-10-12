@@ -43,6 +43,8 @@ class Game:
                             self.snake.direction = Direction.LEFT
                         elif event.key == pygame.K_RIGHT:
                             self.snake.direction = Direction.RIGHT
+                        elif event.key == pygame.K_a:
+                            self.snake.auto_pilot = True
                     else:
                         if event.key == pygame.K_SPACE:
                             pause = False
